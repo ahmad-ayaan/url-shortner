@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>HomePage</title>
+</head>
+<body>
+
+<h3>Welocome To Url Shortner</h3>
+
+<h3>Generate New Url</h3>
+<h2 th:text="${message}"></h2>
+<h1 th:text="${short}"></h1>
+<form th:action="@{/home}" th:object="${urldto}" method="post">
+
+    <label>Enter Url</label>
+    <input type="text" th:field="*{baseUrl}" />
+    <button type="submit">Submit</button>
+</form>
+
+
+</body>
+</html>
