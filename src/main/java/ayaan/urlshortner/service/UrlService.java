@@ -1,7 +1,8 @@
 package ayaan.urlshortner.service;
 
 import ayaan.urlshortner.entity.Url;
-import ayaan.urlshortner.repositery.UrlRepository;
+
+import java.util.List;
 
 public interface UrlService{
     Url getOriginal(String shortUrl);
@@ -11,5 +12,6 @@ public interface UrlService{
     Url getShort(String baseUrl);
 
     Url createUrl(String baseUrl);
-
+    List<Url> findAll();
+    String deleteUrl(Long id);
 }

@@ -4,6 +4,7 @@ import ayaan.urlshortner.entity.Url;
 import ayaan.urlshortner.repositery.UrlRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -44,6 +45,25 @@ public class UrlServiceImpl implements UrlService{
             return repository.save(url);
         }
     }
+
+    @Override
+    public List<Url> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
+    public String deleteUrl(Long id) {
+            Url url = repository.findById(id).orElse(null);
+            if(url != null) {
+                repository.delete(url);
+                return "Deleted Url with id: " + id;
+            }
+            else {
+                return "Url not found with id: "+id;
+            }
+    }
+
+
     private String generateShortCode() {
         return UUID.randomUUID()
                 .toString()
