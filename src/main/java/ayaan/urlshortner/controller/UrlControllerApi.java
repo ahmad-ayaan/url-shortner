@@ -25,8 +25,8 @@ public class UrlControllerApi {
             return "Url Not mapped";
         }
     }
-    @PostMapping("/generate/")
-    public String generateUrl(@RequestParam String baseUrl){
+    @PostMapping("/generate/{baseUrl}")
+    public String generateUrl(@PathVariable String baseUrl){
         Url url = service.createUrl(baseUrl);
         return url.getShortUrl();
     }

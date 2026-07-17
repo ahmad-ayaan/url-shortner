@@ -12,7 +12,7 @@ public class UrlDto {
     }
 
     public void setBaseUrl(String baseUrl) {
-        this.baseUrl = baseUrl;
+        this.baseUrl = baseUrl.strip();
     }
 
     public String getShortUrl() {
@@ -20,6 +20,6 @@ public class UrlDto {
     }
 
     public void setShortUrl(String shortUrl) {
-        this.shortUrl = shortUrl;
+        this.shortUrl = shortUrl.strip();
     }
 }

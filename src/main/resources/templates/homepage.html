@@ -5,18 +5,321 @@
 </head>
 <body>
 
-<h3>Welocome To Url Shortner</h3>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<h3>Generate New Url</h3>
-<h2 th:text="${message}"></h2>
-<h1 th:text="${short}"></h1>
-<form th:action="@{/home}" th:object="${urldto}" method="post">
+<head>
+    <title>URL Shortener</title>
 
-    <label>Enter Url</label>
-    <input type="text" th:field="*{baseUrl}" />
-    <button type="submit">Submit</button>
-</form>
+    <style>
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #333;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            padding: 30px;
+        }
+
+        .header h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 18px;
+        }
+
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+
+        .card {
+            background: white;
+            width: 380px;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+
+        .card:hover {
+            transform: translateY(-8px);
+        }
+
+
+        .generate {
+            border-top: 8px solid #00c853;
+        }
+
+        .redirect {
+            border-top: 8px solid #ff9800;
+        }
+
+
+        h2 {
+            color: #444;
+            text-align: center;
+        }
+
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px #667eea;
+        }
+
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+
+        .generate button {
+            background: linear-gradient(45deg,#00c853,#64dd17);
+        }
+
+
+        .redirect button {
+            background: linear-gradient(45deg,#ff9800,#ff5722);
+        }
+
+
+        button:hover {
+            opacity: 0.85;
+            transform: scale(1.03);
+        }
+
+
+        .message {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+
+        .short-url {
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+
+        .info {
+            margin-top: 25px;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+
+        .info ul {
+            padding-left: 20px;
+        }
+
+
+        footer {
+            text-align:center;
+            color:white;
+            padding:20px;
+            margin-top:30px;
+        }
+
+
+        @media(max-width:800px){
+            .container{
+                flex-direction:column;
+                align-items:center;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="header">
+
+    <h1>🔗 URL Shortener</h1>
+
+    <p>
+        Convert long URLs into short and easy-to-share links.
+    </p>
+
+</div>
+
+
+
+<div class="container">
+
+
+    <!-- Generate URL Card -->
+
+    <div class="card generate">
+
+        <h2>🚀 Generate Short URL</h2>
+
+
+        <p>
+            Create a compact URL that is easier to remember and share.
+        </p>
+
+
+        <p class="message" th:text="${message}"></p>
+
+
+        <p class="short-url" th:text="${short}"></p>
+
+
+
+        <form th:action="@{/home}"
+              th:object="${urldto}"
+              method="post">
+
+
+            <label>
+                Enter Original URL
+            </label>
+
+
+            <input type="url"
+                   th:field="*{baseUrl}"
+                   placeholder="https://example.com">
+
+
+            <button type="submit">
+                Generate Short URL
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+
+
+
+
+    <!-- Redirect Card -->
+
+
+    <div class="card redirect">
+
+
+        <h2>🔎 Open Short URL</h2>
+
+
+        <p>
+            Enter your short code to visit the original website.
+        </p>
+
+
+
+        <form th:action="@{/redirect}"
+              th:object="${urldto}"
+              method="post">
+
+
+            <label>
+                Enter Short Code
+            </label>
+
+
+            <input type="text"
+                   th:field="*{shortUrl}"
+                   placeholder="Example: aB12x">
+
+
+            <button type="submit">
+                Redirect
+            </button>
+
+
+        </form>
+
+
+
+        <div class="info">
+
+            <h3>✨ Features</h3>
+
+            <ul>
+                <li>Fast URL conversion</li>
+                <li>Easy sharing of links</li>
+                <li>Clean and simple interface</li>
+                <li>Quick redirection</li>
+            </ul>
+
+        </div>
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+<footer>
+
+    © 2026 URL Shortener | Make Links Short & Simple
+
+</footer>
 
 
 </body>
+
 </html>

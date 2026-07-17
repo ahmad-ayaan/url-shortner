@@ -52,7 +52,12 @@ public class UrlController {
         return "homepage";
     }
 
-
-
-
+    @PostMapping("/redirect")
+    public String redirectUrl(@ModelAttribute UrlDto urlDto){
+        Url url = service.getOriginal(urlDto.getShortUrl());
+        if(url != null){
+            return "redirect:" + url.getBaseUrl();
+        }
+        else return "homepage";
+    }
 }

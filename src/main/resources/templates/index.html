@@ -1,12 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h3>Welcome To Index Page</h3>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayaan URL Shortener</title>
 
-<a href="home">Home Page</a>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .container {
+            background: white;
+            width: 90%;
+            max-width: 550px;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .home-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 20px 0;
+            transition: 0.3s;
+        }
+
+        .home-btn:hover {
+            background: #5563c1;
+        }
+
+        .description {
+            color: #666;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .profile {
+            margin-top: 35px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        .profile h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .profile a {
+            display: inline-block;
+            margin: 8px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .profile a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🔗 URL Shortener</h1>
+
+    <p class="description">
+        Easily convert your long URLs into short, simple and shareable links.
+    </p>
+
+
+    <!-- Home Page Redirect -->
+    <a th:href="@{/home}" class="home-btn">
+        🏠 Go To Home Page
+    </a>
+
+
+    <!-- Developer Information -->
+    <div class="profile">
+
+        <h3>Developed By Ayaan Ahmad</h3>
+
+        <a href="https://github.com/ahmad-ayaan" target="_blank">
+            🐙 GitHub
+        </a>
+
+        <a href="https://www.linkedin.com/in/ayaanahmad" target="_blank">
+            💼 LinkedIn
+        </a>
+
+    </div>
+
+</div>
+
 </body>
+
 </html>
